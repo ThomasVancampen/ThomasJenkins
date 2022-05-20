@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: chat
+  name: auth
 spec:
   selector:
     matchLabels:
-      app: chat
+      app: auth
   template:
     metadata:
       labels:
-        app: chat
+        app: auth
     spec:
       containers:
-      - name: chat
+      - name: auth
         imagePullPolicy: IfNotPresent
-        image: thomas5674/thomasjenkins:chat
+        image: thomas5674/thomasjenkins:auth
         ports:
           - containerPort: 3000
             name: http-web-svc
@@ -24,12 +24,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: chat
+  name: auth
 spec:
   selector:
-    app: chat
+    app: auth
   ports:
-  - name: chat
+  - name: auth
     protocol: TCP
     port: 3000
     targetPort: http-web-svc
